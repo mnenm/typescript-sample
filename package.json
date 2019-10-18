@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint ./src/*.ts ./src/**/*.ts",
     "lint:fix": "eslint --fix ./src/*.ts ./src/**/*.ts"
   },
@@ -13,8 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^24.0.19",
-    "@types/node": "^12.11.1",
-    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@types/node": "^12.11.1", "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
@@ -33,5 +32,22 @@
   },
   "lint-staged": {
     "*.ts": "eslint"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/__tests__/**/*.(test|spec).ts"
+    ]
   }
 }

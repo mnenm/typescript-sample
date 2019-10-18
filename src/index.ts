@@ -1,1 +1,1 @@
-console.log("this is typescript base");
+export const greet = (name: string): string => `Hi, ${name}`;
