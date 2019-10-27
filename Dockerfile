@@ -1,14 +1,15 @@
-FROM node:13.0.1-alpine AS build
+FROM node:13.0.1-alpine AS base
+RUN apk add --no-cache tini
 WORKDIR /usr/src/app
+
+FROM base AS builder
 COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:13.0.1-alpine
-RUN apk add --no-cache tini
-WORKDIR /usr/src/app
-COPY --from=build /usr/src/app/dist ./dist
+FROM base
+COPY --from=builder /usr/src/app/dist ./dist
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --production
 CMD ["node", "dist/index.js"]
