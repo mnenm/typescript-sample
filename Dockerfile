@@ -1,4 +1,4 @@
-FROM node:13.0.1-alpine AS base
+FROM node:17.9-alpine AS base
 RUN apk add --no-cache tini
 WORKDIR /usr/src/app
 
